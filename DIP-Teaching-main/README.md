@@ -1,13 +1,4 @@
-# Assignment 1 - Image Warping
-
-### In this assignment, you will implement basic transformation and point-based deformation for images.
-
-### Resources:
-- [Teaching Slides](https://pan.ustc.edu.cn/share/index/66294554e01948acaf78) 
-- [Paper: Image Deformation Using Moving Least Squares](https://people.engr.tamu.edu/schaefer/research/mls.pdf)
-- [Paper: Image Warping by Radial Basis Functions](https://www.sci.utah.edu/~gerig/CS6640-F2010/Project3/Arad-1995.pdf)
-- [OpenCV Geometric Transformations](https://docs.opencv.org/4.x/da/d6e/tutorial_py_geometric_transformations.html)
-- [Gradio: 一个好用的网页端交互GUI](https://www.gradio.app/)
+<img width="2559" height="1599" alt="run_global_transform-checkpoint_result" src="https://github.com/user-attachments/assets/e2640c57-37b9-44d7-8328-8fbda110c892" /><img width="2559" height="1599" alt="run_global_transform-checkpoint_result" src="https://github.com/user-attachments/assets/3d6037c4-78df-4b1c-a059-855d6d3366c9" /># Assignment 1 - Image Warping
 
 ### 1. Basic Image Geometric Transformation (Scale/Rotation/Translation).
 Fill the [Missing Part](run_global_transform.py#L21) of 'run_global_transform.py'.
@@ -18,8 +9,6 @@ Fill the [Missing Part](run_global_transform.py#L21) of 'run_global_transform.py
 Implement MLS or RBF based image deformation in the [Missing Part](run_point_transform.py#L52) of 'run_point_transform.py'.
 
 ---
-## 一个作业提交模板 (里面的结果也可参考)
-
 
 ## Implementation of Image Geometric Transformation
 
@@ -31,8 +20,14 @@ This repository is Yudong Guo's implementation of Assignment_01 of DIP.
 
 To install requirements:
 
-```python
+```setup
+python -m pip install -r requirements.txt
+```
 
+## Fill Part
+
+in basic transformation part:
+```point
 # Function to apply transformations based on user inputs
 def apply_transform(image, scale, rotation, translation_x, translation_y, flip_horizontal):
 
@@ -116,28 +111,148 @@ def apply_transform(image, scale, rotation, translation_x, translation_y, flip_h
     )
     return transformed_image
 ```
+in point guided transformation part:
+
+part1:
+```python
+
+def local_translation_warp(img, src_pt, dst_pt, radius=40, strength=1.0):
+    """
+    单对控制点的局部平移形变（backward warping）
+    src_pt: 原位置
+    dst_pt: 目标位置
+    radius: 影响半径
+    strength: 强度系数
+    """
+    h, w = img.shape[:2]
+
+    src_x, src_y = float(src_pt[0]), float(src_pt[1])
+    dst_x, dst_y = float(dst_pt[0]), float(dst_pt[1])
+
+    # backward warping: 输出图 dst 附近回采样到 src 附近
+    move_x = (src_x - dst_x) * strength
+    move_y = (src_y - dst_y) * strength
+
+    yy, xx = np.meshgrid(np.arange(h), np.arange(w), indexing="ij")
+    xx = xx.astype(np.float32)
+    yy = yy.astype(np.float32)
+
+    dx = xx - dst_x
+    dy = yy - dst_y
+    dist = np.sqrt(dx * dx + dy * dy)
+
+    mask = dist < radius
+
+    # 更柔和一点的衰减函数
+    weight = np.zeros_like(xx, dtype=np.float32)
+    t = 1.0 - dist[mask] / radius
+    weight[mask] = t * t * (3.0 - 2.0 * t)   # smoothstep 风格
+
+    map_x = xx.copy()
+    map_y = yy.copy()
+
+    map_x[mask] = xx[mask] + move_x * weight[mask]
+    map_y[mask] = yy[mask] + move_y * weight[mask]
+
+    warped = cv2.remap(
+        img,
+        map_x,
+        map_y,
+        interpolation=cv2.INTER_LINEAR,
+        borderMode=cv2.BORDER_REFLECT101
+    )
+    return warped
+
+
+def point_guided_deformation(image, source_pts, target_pts, radius=40, strength=1.0):
+    """
+    对多对控制点依次执行局部 warp
+    """
+    if image is None:
+        return None
+
+    warped = image.copy()
+
+    if len(source_pts) == 0 or len(source_pts) != len(target_pts):
+        return warped
+
+    for src_pt, dst_pt in zip(source_pts, target_pts):
+        warped = local_translation_warp(
+            warped,
+            src_pt,
+            dst_pt,
+            radius=radius,
+            strength=strength
+        )
+
+    return warped
+
+```
+part2:
+```python
+
+with gr.Blocks() as demo:
+    gr.Markdown("## Point-Guided Face Warp Demo")
+
+    with gr.Row():
+        with gr.Column(scale=3):
+            input_image = gr.Image(
+                label="上传图片",
+                type="numpy",
+                interactive=True
+            )
+
+            point_selector = gr.Image(
+                label="点击选择控制点和目标点（source / target 交替点击）",
+                type="numpy",
+                interactive=True
+            )
+
+        with gr.Column(scale=2):
+            output_image = gr.Image(
+                label="变换结果",
+                type="numpy"
+            )
+
+            radius_slider = gr.Slider(
+                minimum=10,
+                maximum=200,
+                value=70,
+                step=1,
+                label="Radius（影响范围）"
+            )
+
+            strength_slider = gr.Slider(
+                minimum=0.1,
+                maximum=2.0,
+                value=1.0,
+                step=0.05,
+                label="Strength（形变强度）"
+            )
+
+```
 
 
 ## Running
 
 To run basic transformation, run:
 
-```basic
+```python
 python run_global_transform.py
 ```
 
 To run point guided transformation, run:
 
-```point
+```python
 python run_point_transform.py
 ```
 
 ## Results (need add more result images)
 ### Basic Transformation
-<img src="pics/global_demo.gif" alt="alt text" width="800">
+<img src="pics/run_global_transform-checkpoint_result.gif" alt="alt text" width="800">
 
 ### Point Guided Deformation:
-<img src="pics/point_demo.gif" alt="alt text" width="800">
+<img src="pics/run_point_transform-checkpoint_result.gif" alt="alt text" width="800">
 
 ## Acknowledgement
 
