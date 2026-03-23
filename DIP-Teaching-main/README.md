@@ -14,11 +14,11 @@ Implement MLS or RBF based image deformation in the [Missing Part](run_point_tra
 
 First test picture: 
 
-<img src="Assignments/01 lmageWarping/test1.jpg" alt="alt text" width="800">
+<img src="Assignments/01_lmageWarping/test1.jpg" alt="alt text" width="800">
 
 Second test picture:
 
-<img src="test2.jpg" alt="alt text" width="800">
+<img src="Assignments/01_lmageWarping/test2.jpg" alt="alt text" width="800">
 
 
 ## Requirements
@@ -254,14 +254,14 @@ python run_point_transform.py
 
 ## Results (need add more result images)
 ### Basic Transformation
-<img src="run_global_transform-checkpoint_result.png" alt="alt text" width="800">
+<img src="Assignments/01_lmageWarping/run_global_transform-checkpoint_result.png" alt="alt text" width="800">
 
-<img src="run_global_transform-checkpoint_result2.png" alt="alt text" width="800">
+<img src="Assignments/01_lmageWarping/run_global_transform-checkpoint_result2.png" alt="alt text" width="800">
 
 ### Point Guided Deformation:
-<img src="run_point_transform-checkpoint_result.png" alt="alt text" width="800">
+<img src="Assignments/01_lmageWarping/run_point_transform-checkpoint_result.png" alt="alt text" width="800">
 
-<img src="run_point_transform-checkpoint_result2.png" alt="alt text" width="800">
+<img src="Assignments/01_lmageWarping/run_point_transform-checkpoint_result2.png" alt="alt text" width="800">
 
 ## Acknowledgement
 
