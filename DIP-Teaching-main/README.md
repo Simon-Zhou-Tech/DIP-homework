@@ -1,4 +1,4 @@
-<img width="2559" height="1599" alt="run_global_transform-checkpoint_result" src="https://github.com/user-attachments/assets/e2640c57-37b9-44d7-8328-8fbda110c892" /><img width="2559" height="1599" alt="run_global_transform-checkpoint_result" src="https://github.com/user-attachments/assets/3d6037c4-78df-4b1c-a059-855d6d3366c9" /># Assignment 1 - Image Warping
+# Assignment 1 - Image Warping
 
 ### 1. Basic Image Geometric Transformation (Scale/Rotation/Translation).
 Fill the [Missing Part](run_global_transform.py#L21) of 'run_global_transform.py'.
@@ -12,9 +12,14 @@ Implement MLS or RBF based image deformation in the [Missing Part](run_point_tra
 
 ## Implementation of Image Geometric Transformation
 
-This repository is Yudong Guo's implementation of Assignment_01 of DIP. 
+First test picture: 
 
-<img src="pics/teaser.png" alt="alt text" width="800">
+<img src="test1.jpg" alt="alt text" width="800">
+
+Second test picture:
+
+<img src="test2.jpg" alt="alt text" width="800">
+
 
 ## Requirements
 
@@ -251,8 +256,11 @@ python run_point_transform.py
 ### Basic Transformation
 <img src="pics/run_global_transform-checkpoint_result.gif" alt="alt text" width="800">
 
+<img src="pics/run_global_transform-checkpoint_result2.gif" alt="alt text" width="800">
 ### Point Guided Deformation:
 <img src="pics/run_point_transform-checkpoint_result.gif" alt="alt text" width="800">
+
+<img src="pics/run_point_transform-checkpoint_result2.gif" alt="alt text" width="800">
 
 ## Acknowledgement
 
