@@ -254,13 +254,14 @@ python run_point_transform.py
 
 ## Results (need add more result images)
 ### Basic Transformation
-<img src="pics/run_global_transform-checkpoint_result.gif" alt="alt text" width="800">
+<img src="run_global_transform-checkpoint_result.gif" alt="alt text" width="800">
 
-<img src="pics/run_global_transform-checkpoint_result2.gif" alt="alt text" width="800">
+<img src="run_global_transform-checkpoint_result2.gif" alt="alt text" width="800">
+
 ### Point Guided Deformation:
-<img src="pics/run_point_transform-checkpoint_result.gif" alt="alt text" width="800">
+<img src="run_point_transform-checkpoint_result.gif" alt="alt text" width="800">
 
-<img src="pics/run_point_transform-checkpoint_result2.gif" alt="alt text" width="800">
+<img src="run_point_transform-checkpoint_result2.gif" alt="alt text" width="800">
 
 ## Acknowledgement
 
