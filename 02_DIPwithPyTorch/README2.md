@@ -199,11 +199,6 @@ python train.py
 |---|---|---|
 | <img src="data_poisson/water/source.jpg" width="250"> | <img src="data_poisson/water/target.jpg" width="250"> | <img src="data_poisson/water/output.png" width="250"> |
 
-### Pix2Pix
-
-<img src="Pix2Pix/val_results/epoch_50/result_1.png" width="800">
-
-<img src="Pix2Pix/val_results/epoch_100/result_1.png" width="800">
 
 ## Acknowledgement
 
