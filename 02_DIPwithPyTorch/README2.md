@@ -192,7 +192,7 @@ python train.py
 #### monalisa
 | Source | Target | Output |
 |---|---|---|
-| <img src="data_poisson/monolisa/source.png" width="250"> | <img src="data_poisson/monolisa/target.png" width="250"> | <img src="data_poisson/monaolisa/output.png" width="250"> |
+| <img src="data_poisson/monolisa/source.png" width="250"> | <img src="data_poisson/monolisa/target.png" width="250"> | <img src="data_poisson/monolisa/output.png" width="250"> |
 
 #### water
 | Source | Target | Output |
