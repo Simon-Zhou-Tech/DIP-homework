@@ -195,22 +195,22 @@ compared with the full Pix2Pix model.
 ## Results
 
 ### Training Results
-<img src="train_results/epoch_0/result_1.png" alt="val result" width="800">
+<img src="train_part_results/epoch_0/result_1.png" alt="val result" width="800">
 
-<img src="train_results/epoch_100/result_1.png" alt="val result" width="800">
+<img src="train_part_results/epoch_100/result_1.png" alt="val result" width="800">
 
-<img src="train_results/epoch_200/result_1.png" alt="val result" width="800">
+<img src="train_part_results/epoch_200/result_1.png" alt="val result" width="800">
 
-<img src="train_results/epoch_295/result_1.png" alt="val result" width="800">
+<img src="train_part_results/epoch_295/result_1.png" alt="val result" width="800">
 
 ### Validation Results
-<img src="val_results/epoch_0/result_1.png" alt="val result" width="800">
+<img src="val_part_results/epoch_0/result_1.png" alt="val result" width="800">
 
-<img src="val_results/epoch_100/result_1.png" alt="val result" width="800">
+<img src="val_part_results/epoch_100/result_1.png" alt="val result" width="800">
 
-<img src="val_results/epoch_200/result_1.png" alt="val result" width="800">
+<img src="val_part_results/epoch_200/result_1.png" alt="val result" width="800">
 
-<img src="val_results/epoch_295/result_1.png" alt="val result" width="800">
+<img src="val_part_results/epoch_295/result_1.png" alt="val result" width="800">
 
 > You can replace the image paths above with the actual epochs that look best in your experiment.
 
